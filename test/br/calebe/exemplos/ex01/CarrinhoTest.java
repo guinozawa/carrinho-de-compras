@@ -38,9 +38,7 @@ public class CarrinhoTest {
                 Produto livro3 = new Produto("Dom Casmurro",30.00);
 		carrinho.add(livro3);
                 assertEquals(3, carrinho.numeroDeProdutos());
-                assertEquals(livro1, new Produto("Java em 24 horas", 50.00));
-                assertEquals(livro2, new Produto("Java: como programar", 150.00));
-                assertEquals(livro3,new Produto("Dom Casmurro",30.00));         
+                      
 	}
         
         @Test
@@ -48,9 +46,7 @@ public class CarrinhoTest {
                 Produto livro1 = new Produto("Java em 24 horas", 50.00);
 		carrinho.add(livro1);
 		Produto livro2 = new Produto("Java: como programar", 150.00);
-		carrinho.add(livro2); 
-                assertEquals(livro1, new Produto("Java em 24 horas", 50.00));
-                assertEquals(livro2, new Produto("Java: como programar", 150.00));   
+		carrinho.add(livro2);
                 carrinho.listarProdutos();
                 carrinho.remove(livro1);
                 carrinho.listarProdutos();
