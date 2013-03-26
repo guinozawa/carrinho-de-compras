@@ -19,5 +19,8 @@ public class Produto {
 		Produto p = (Produto) obj;
 		return nome.equals(p.nome);
 	}
-
+        
+        public String getNome(){
+                return nome;
+        }
 }
