@@ -1,6 +1,6 @@
 package br.calebe.exemplos.ex01;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,22 +31,64 @@ public class CarrinhoTest {
 
 	@Test
 	public void colocandoMaisProdutos() throws CarrinhoVazioExpected {
+		Produto livro1 = new Produto("Java em 24 horas", 50.00);
+		carrinho.add(livro1);
+		Produto livro2 = new Produto("Java: como programar", 150.00);
+		carrinho.add(livro2);
+                Produto livro3 = new Produto("Dom Casmurro",30.00);
+		carrinho.add(livro3);
+                assertEquals(3, carrinho.numeroDeProdutos());
+                assertEquals(livro1, new Produto("Java em 24 horas", 50.00));
+                assertEquals(livro2, new Produto("Java: como programar", 150.00));
+                assertEquals(livro3,new Produto("Dom Casmurro",30.00));         
+	}
+        
+        @Test
+        public void listaTodosProdutosTest() throws CarrinhoVazioExpected {
+                Produto livro1 = new Produto("Java em 24 horas", 50.00);
+		carrinho.add(livro1);
+		Produto livro2 = new Produto("Java: como programar", 150.00);
+		carrinho.add(livro2); 
+                assertEquals(livro1, new Produto("Java em 24 horas", 50.00));
+                assertEquals(livro2, new Produto("Java: como programar", 150.00));   
+                carrinho.listarProdutos();
+                carrinho.remove(livro1);
+                carrinho.listarProdutos();
+                carrinho.add(livro1);
+                carrinho.listarProdutos();
+        }
+        
+        @Test
+        public void removendoUmProdutoTest() throws CarrinhoVazioExpected {
 		Produto livro = new Produto("Java em 24 horas", 50.00);
 		carrinho.add(livro);
-		Produto deitel = new Produto("Java: como programar", 150.00);
-		carrinho.add(deitel);
-		Produto menor;
-		menor = carrinho.menorProduto();
-		assertArrayEquals(new Object[] { livro }, new Object[] { menor });
+		assertTrue(carrinho.buscarProduto(livro));
+                carrinho.remove(livro);
+                assertEquals(0, carrinho.numeroDeProdutos());
+                
 	}
+        
+        @Test
+        public void calculaTotaPedidoTest() throws CarrinhoVazioExpected{
+                Produto livro1 = new Produto("Java em 24 horas", 50.00);
+		carrinho.add(livro1);
+		Produto livro2 = new Produto("Java: como programar", 150.00);
+		carrinho.add(livro2);
+                Produto livro3 = new Produto("Dom Casmurro", 30.00);
+                carrinho.add(livro3);
+                assertEquals(230.00, carrinho.calcularTotalPedido(), 1e-40);
+                carrinho.remove(livro2);
+                assertEquals(80.00, carrinho.calcularTotalPedido(), 1e-40);
+        }
 
 	@Test
-	public void identidadeDeProdutos() throws CarrinhoVazioExpected {
+	public void identidadeDeProdutosTest() throws CarrinhoVazioExpected {
 		Produto original = new Produto("Java em 24 horas", 50.00);
 		carrinho.add(original);
 		Produto copia = new Produto("Java em 24 horas", 50.00);
 		original = carrinho.menorProduto();
 		assertArrayEquals(new Object[] { original }, new Object[] { copia });
 	}
-
+        
+       
 }
