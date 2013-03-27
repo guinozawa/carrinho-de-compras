@@ -54,6 +54,12 @@ public class Carrinho {
 			System.out.println("Produto: " + "\"" + produto.getNome() + "\"" +  "      Valor: " + produto.getPreco() + "\n");
         }
         
+        public List<Produto> getList() throws CarrinhoVazioExpected{
+            if (produtos.isEmpty())
+			throw new CarrinhoVazioExpected();
+            return produtos;
+        }
+        
         public double calcularTotalPedido(){
                double total = 0.0;
                if (produtos.isEmpty())
