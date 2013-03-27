@@ -42,7 +42,11 @@ public class CarrinhoTest {
                 assertEquals(3, carrinho.numeroDeProdutos());
                 assertTrue(carrinho.buscarProduto(livro1));
                 assertTrue(carrinho.buscarProduto(livro2));
-                assertTrue(carrinho.buscarProduto(livro3));                     
+                assertTrue(carrinho.buscarProduto(livro3));  
+                //assertEquals(carrinho.buscarProduto(livro1), livro1);
+                //assertEquals(carrinho.buscarProduto(livro2), livro2);
+                //assertEquals(carrinho.buscarProduto(livro3), livro3); 
+                
 	}
 
         @Test
@@ -54,22 +58,23 @@ public class CarrinhoTest {
 		carrinho.add(livro2);
                 produtos.add(livro1);
                 produtos.add(livro2);
+                assertEquals(2, carrinho.numeroDeProdutos());
                 assertEquals(produtos, carrinho.getList());
         }
         
         @Test
         public void removendoUmProdutoTest() throws CarrinhoVazioExpected {
 		Produto livro = new Produto("Java em 24 horas", 50.00);
-                Produto livro2 = new Produto("Java: como programar", 150.00);
 		carrinho.add(livro);
-		assertTrue(carrinho.buscarProduto(livro));
-                carrinho.remove(livro);
+		assertTrue(carrinho.remove(livro));
                 assertEquals(0, carrinho.numeroDeProdutos());
-                carrinho.add(livro);
-                carrinho.add(livro2);
-                carrinho.remove(livro);
-                assertFalse(carrinho.buscarProduto(livro));             
 	}
+        
+        @Test(expected = CarrinhoVazioExpected.class)
+        public void removendoUmProdutoInexistenteTest() throws CarrinhoVazioExpected{
+                Produto livro2 = new Produto("Java: como programar", 150.00);
+                assertFalse(carrinho.remove(livro2));
+        }
         
         @Test
         public void calculaTotaPedidoTest() throws CarrinhoVazioExpected{

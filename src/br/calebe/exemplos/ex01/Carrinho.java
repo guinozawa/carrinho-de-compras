@@ -15,10 +15,14 @@ public class Carrinho {
 		produtos.add(produto);
 	}
         
-        public void remove(Produto produto) throws CarrinhoVazioExpected {
+        public boolean remove(Produto produto) throws CarrinhoVazioExpected {
                 if (produtos.isEmpty())
 			throw new CarrinhoVazioExpected();
-		produtos.remove(produto);
+                else if(!buscarProduto(produto))
+                        return false;
+                else 
+                        produtos.remove(produto);
+               return true;
 	}
 
 	public Produto menorProduto() throws CarrinhoVazioExpected {
