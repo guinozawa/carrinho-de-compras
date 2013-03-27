@@ -43,10 +43,6 @@ public class CarrinhoTest {
                 assertTrue(carrinho.buscarProduto(livro1));
                 assertTrue(carrinho.buscarProduto(livro2));
                 assertTrue(carrinho.buscarProduto(livro3));  
-                //assertEquals(carrinho.buscarProduto(livro1), livro1);
-                //assertEquals(carrinho.buscarProduto(livro2), livro2);
-                //assertEquals(carrinho.buscarProduto(livro3), livro3); 
-                
 	}
 
         @Test
